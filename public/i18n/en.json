@@ -11,8 +11,11 @@
   "orders": {
     "title": "Orders",
     "empty": "No orders match the current filters.",
+    "loadError": "Unable to load orders. Please try again.",
+    "retry": "Retry",
     "noFiltered": "No orders match the current filters.",
     "table": {
+      "viewOrderDetails": "View order {{orderId}} details",
       "orderId": "Order ID",
       "date": "Date",
       "status": "Status",

@@ -1,4 +1,5 @@
-import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
+import { Component, ChangeDetectionStrategy, effect, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -7,12 +8,11 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatButtonModule } from '@angular/material/button';
 import { OrdersStore } from '../../../core/store/orders.store';
 import {
-  OrderFilters,
   OrderStatus,
   PaymentMethod,
   DEFAULT_FILTERS,
 } from '../../../core/models/order.model';
-import { debounceTime } from 'rxjs/operators';
+import { debounceTime, startWith } from 'rxjs/operators';
 import { TranslateModule } from '@ngx-translate/core';
 
 const STATUS_OPTIONS: (OrderStatus | 'ALL')[] = [
@@ -56,8 +56,17 @@ export class OrdersFiltersComponent {
     searchOrderId: this.fb.nonNullable.control(DEFAULT_FILTERS.searchOrderId),
   });
 
+  private readonly formValueSignal = toSignal(
+    this.form.valueChanges.pipe(
+      debounceTime(300),
+      startWith(this.form.getRawValue())
+    ),
+    { initialValue: this.form.getRawValue() }
+  );
+
   constructor() {
-    this.form.valueChanges.pipe(debounceTime(300)).subscribe((v) => {
+    effect(() => {
+      const v = this.formValueSignal();
       this.store.setFilters({
         dateFrom: v.dateFrom ?? null,
         dateTo: v.dateTo ?? null,

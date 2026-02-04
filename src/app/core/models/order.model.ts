@@ -43,6 +43,14 @@ export interface PaginationState {
   pageSize: number;
 }
 
+/** Column ids that can be used for table sort. */
+export type OrderSortColumn =
+  | 'orderId'
+  | 'orderDate'
+  | 'status'
+  | 'paymentMethod'
+  | 'totalAmount';
+
 export const DEFAULT_FILTERS: OrderFilters = {
   dateFrom: null,
   dateTo: null,

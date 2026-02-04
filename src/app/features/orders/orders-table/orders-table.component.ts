@@ -11,7 +11,11 @@ import { MatSortModule, Sort } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { CurrencyPipe, NgClass } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
-import { Order, PaginationState } from '../../../core/models/order.model';
+import {
+  Order,
+  OrderSortColumn,
+  PaginationState,
+} from '../../../core/models/order.model';
 
 @Component({
   selector: 'app-orders-table',
@@ -37,7 +41,10 @@ export class OrdersTableComponent {
 
   readonly displayedColumns = ['orderId', 'orderDate', 'status', 'paymentMethod', 'totalAmount'];
 
-  private readonly sortState = signal<{ active: string; direction: 'asc' | 'desc' }>({
+  private readonly sortState = signal<{
+    active: OrderSortColumn;
+    direction: 'asc' | 'desc';
+  }>({
     active: 'orderDate',
     direction: 'desc',
   });
@@ -48,8 +55,8 @@ export class OrdersTableComponent {
     const pageIndex = this.pageIndex();
     const pageSize = this.pageSize();
     const sorted = [...list].sort((a, b) => {
-      const aVal = (a as unknown as Record<string, unknown>)[sort.active];
-      const bVal = (b as unknown as Record<string, unknown>)[sort.active];
+      const aVal = this.getSortValue(a, sort.active);
+      const bVal = this.getSortValue(b, sort.active);
       if (aVal == null && bVal == null) return 0;
       if (aVal == null) return sort.direction === 'asc' ? 1 : -1;
       if (bVal == null) return sort.direction === 'asc' ? -1 : 1;
@@ -59,6 +66,23 @@ export class OrdersTableComponent {
     const start = pageIndex * pageSize;
     return sorted.slice(start, start + pageSize);
   });
+
+  private getSortValue(order: Order, column: OrderSortColumn): string | number | null {
+    switch (column) {
+      case 'orderId':
+        return order.orderId;
+      case 'orderDate':
+        return order.orderDate;
+      case 'status':
+        return order.status;
+      case 'paymentMethod':
+        return order.paymentMethod;
+      case 'totalAmount':
+        return order.totalAmount;
+      default:
+        return null;
+    }
+  }
 
   statusClass(status: string): string {
     switch (status) {
@@ -76,10 +100,10 @@ export class OrdersTableComponent {
   }
 
   onSort(event: Sort): void {
-    this.sortState.set({
-      active: event.active || 'orderDate',
-      direction: (event.direction as 'asc' | 'desc') || 'desc',
-    });
+    const active: OrderSortColumn =
+      (event.active as OrderSortColumn) ?? 'orderDate';
+    const direction = (event.direction as 'asc' | 'desc') ?? 'desc';
+    this.sortState.set({ active, direction });
   }
 
   onPage(event: { pageIndex: number; pageSize: number }): void {

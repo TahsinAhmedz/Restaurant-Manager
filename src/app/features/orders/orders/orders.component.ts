@@ -1,9 +1,12 @@
 import {
   Component,
   ChangeDetectionStrategy,
+  DestroyRef,
   inject,
   OnInit,
 } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
 import { OrdersStore } from '../../../core/store/orders.store';
@@ -20,6 +23,7 @@ import { TranslateModule } from '@ngx-translate/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     MatCardModule,
+    MatButtonModule,
     OrdersFiltersComponent,
     OrdersTableComponent,
     LoadingSpinnerComponent,
@@ -31,15 +35,34 @@ import { TranslateModule } from '@ngx-translate/core';
 export class OrdersComponent implements OnInit {
   readonly store = inject(OrdersStore);
   private readonly dialog = inject(MatDialog);
+  private readonly destroyRef = inject(DestroyRef);
 
   ngOnInit(): void {
-    this.store.loadOrders();
+    this.subscribeToLoadOrders();
+  }
+
+  retryLoadOrders(): void {
+    this.subscribeToLoadOrders();
   }
 
   openOrderDetails(order: Order): void {
     this.dialog.open(OrderDetailsDialogComponent, {
       data: order,
       width: '500px',
+    });
+  }
+
+  private subscribeToLoadOrders(): void {
+    this.store.loadOrders().pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
+      next: (data) => {
+        this.store.setOrders(data);
+        this.store.setLoading(false);
+        this.store.setLoadError(null);
+      },
+      error: () => {
+        this.store.setLoadError('orders.loadError');
+        this.store.setLoading(false);
+      },
     });
   }
 }

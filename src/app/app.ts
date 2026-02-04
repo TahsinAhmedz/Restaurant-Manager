@@ -20,10 +20,17 @@ export class App {
 
   currentLang: 'en' | 'bn' = 'en';
 
+  private static readonly LANG_STORAGE_KEY = 'app.lang';
+
   constructor() {
+    const stored = localStorage.getItem(App.LANG_STORAGE_KEY) as 'en' | 'bn' | null;
     const browserLang = this.translateService.getBrowserLang();
     const initialLang: 'en' | 'bn' =
-      browserLang && browserLang.startsWith('bn') ? 'bn' : 'en';
+      stored === 'en' || stored === 'bn'
+        ? stored
+        : browserLang && browserLang.startsWith('bn')
+          ? 'bn'
+          : 'en';
     this.currentLang = initialLang;
     this.translateService.use(this.currentLang);
   }
@@ -34,6 +41,7 @@ export class App {
     }
     this.currentLang = lang;
     this.translateService.use(lang);
+    localStorage.setItem(App.LANG_STORAGE_KEY, lang);
   }
 
   handleLanguageSelectionChange(lang: 'en' | 'bn'): void {

@@ -18,7 +18,7 @@ import { TranslateModule } from '@ngx-translate/core';
   styleUrl: './order-details-dialog.component.scss',
 })
 export class OrderDetailsDialogComponent {
-  readonly data: Order = inject(MAT_DIALOG_DATA);
+  readonly data: Order | undefined = inject(MAT_DIALOG_DATA);
 
   readonly displayedColumns = ['name', 'quantity', 'price', 'lineTotal'];
 }

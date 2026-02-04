@@ -1,8 +1,8 @@
 import { Injectable, inject, computed, signal } from '@angular/core';
+import { Observable } from 'rxjs';
 import {
   Order,
   OrderFilters,
-  DailyRevenue,
   PaginationState,
   DEFAULT_FILTERS,
 } from '../models/order.model';
@@ -25,11 +25,13 @@ export class OrdersStore {
   private readonly _orders = signal<Order[]>([]);
   private readonly _filters = signal<OrderFilters>({ ...DEFAULT_FILTERS });
   private readonly _loading = signal(false);
+  private readonly _error = signal<string | null>(null);
   private readonly _pagination = signal<PaginationState>({ pageIndex: 0, pageSize: 20 });
 
   readonly orders = this._orders.asReadonly();
   readonly filters = this._filters.asReadonly();
   readonly loading = this._loading.asReadonly();
+  readonly loadError = this._error.asReadonly();
   readonly pagination = this._pagination.asReadonly();
 
   readonly filteredOrders = computed(() => {
@@ -47,27 +49,24 @@ export class OrdersStore {
     return this.analyticsService.calculateDailyRevenue(completed);
   });
 
-  readonly paginatedOrders = computed(() => {
-    const { pageIndex, pageSize } = this._pagination();
-    const filtered = this.filteredOrders();
-    const start = pageIndex * pageSize;
-    return filtered.slice(start, start + pageSize);
-  });
-
   readonly totalCount = computed(() => this.filteredOrders().length);
 
-  loadOrders(): void {
+  setOrders(orders: Order[]): void {
+    this._orders.set(orders);
+  }
+
+  setLoadError(error: string | null): void {
+    this._error.set(error);
+  }
+
+  setLoading(loading: boolean): void {
+    this._loading.set(loading);
+  }
+
+  loadOrders(): Observable<Order[]> {
     this._loading.set(true);
-    this.ordersService.getOrders().subscribe({
-      next: (data) => {
-        this._orders.set(data);
-        this._loading.set(false);
-      },
-      error: () => {
-        this._orders.set([]);
-        this._loading.set(false);
-      },
-    });
+    this._error.set(null);
+    return this.ordersService.getOrders();
   }
 
   setFilters(filters: Partial<OrderFilters>): void {
