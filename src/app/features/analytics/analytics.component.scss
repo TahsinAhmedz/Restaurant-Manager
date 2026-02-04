@@ -1,0 +1,50 @@
+.analytics-card {
+  background: var(--app-surface-elevated);
+  border-radius: var(--app-radius);
+  box-shadow: var(--app-shadow);
+  padding: 1.5rem;
+  border: 1px solid var(--app-border);
+  height: 100%;
+}
+
+.analytics-title {
+  margin: 0 0 1rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--app-text-primary);
+  letter-spacing: -0.01em;
+}
+
+.analytics-subtitle {
+  margin: -0.5rem 0 1rem;
+  font-size: 0.8125rem;
+  color: var(--app-text-muted);
+}
+
+.analytics-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--app-border);
+  border-radius: var(--app-radius-sm);
+  background: var(--app-surface-elevated);
+}
+
+.analytics-table-wrap .mat-mdc-header-row {
+  background: #f9fafb;
+}
+
+.analytics-table-wrap .mat-mdc-row {
+  transition: background-color 0.15s ease;
+
+  &:hover {
+    background-color: #f9fafb;
+  }
+}
+
+.revenue-cell {
+  font-weight: 600;
+  color: var(--app-text-primary);
+}
+
+.empty-wrap {
+  padding: 1rem 0;
+}

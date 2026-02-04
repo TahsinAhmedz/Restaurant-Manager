@@ -1,0 +1,62 @@
+<div class="table-wrap">
+  <table
+    mat-table
+    [dataSource]="dataSource()"
+    matSort
+    (matSortChange)="onSort($event)"
+  >
+    <ng-container matColumnDef="orderId">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Order ID</th>
+      <td mat-cell *matCellDef="let row">
+        <button
+          type="button"
+          class="order-id-link"
+          (click)="orderSelected.emit(row); $event.stopPropagation()"
+        >
+          {{ row.orderId }}
+        </button>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="orderDate">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
+      <td mat-cell *matCellDef="let row">{{ row.orderDate }}</td>
+    </ng-container>
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+      <td mat-cell *matCellDef="let row">
+        <span [class]="'status-badge status-' + statusClass(row.status)">
+          {{ row.status }}
+        </span>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="paymentMethod">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Payment</th>
+      <td mat-cell *matCellDef="let row">{{ row.paymentMethod }}</td>
+    </ng-container>
+    <ng-container matColumnDef="totalAmount">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Total</th>
+      <td mat-cell *matCellDef="let row">{{ row.totalAmount | currency }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr
+      mat-row
+      *matRowDef="let row; columns: displayedColumns"
+      (click)="orderSelected.emit(row)"
+    ></tr>
+
+    <tr class="no-data-row mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="5">No orders match the current filters.</td>
+    </tr>
+  </table>
+
+  <mat-paginator
+    class="paginator-wrap"
+    [length]="totalCount()"
+    [pageSize]="pageSize()"
+    [pageIndex]="pageIndex()"
+    [pageSizeOptions]="[10, 20, 50]"
+    (page)="onPage($event)"
+    showFirstLastButtons
+  />
+</div>

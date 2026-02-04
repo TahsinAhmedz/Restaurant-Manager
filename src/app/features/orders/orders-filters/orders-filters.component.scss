@@ -1,0 +1,29 @@
+.filters-form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  align-items: end;
+
+  @media (min-width: 640px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(5, 1fr) auto;
+    gap: 1rem 1.25rem;
+  }
+}
+
+.filters-form .mat-mdc-form-field {
+  width: 100%;
+}
+
+.filters-actions {
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 0.5rem;
+
+  button {
+    min-width: 88px;
+  }
+}

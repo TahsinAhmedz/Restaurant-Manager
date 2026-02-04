@@ -1,0 +1,40 @@
+<h2 mat-dialog-title class="dialog-title">Order {{ data.orderId }}</h2>
+<mat-dialog-content class="dialog-content">
+  <div class="order-meta">
+    <p><span class="meta-label">Date:</span> {{ data.orderDate }}</p>
+    <p><span class="meta-label">Customer:</span> {{ data.customer.name }}</p>
+    <p><span class="meta-label">Status:</span> {{ data.status }}</p>
+    <p><span class="meta-label">Payment:</span> {{ data.paymentMethod }}</p>
+  </div>
+
+  <div class="items-table-wrap">
+    <table mat-table [dataSource]="data.items" class="w-full">
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Item</th>
+        <td mat-cell *matCellDef="let item">{{ item.name }}</td>
+      </ng-container>
+      <ng-container matColumnDef="quantity">
+        <th mat-header-cell *matHeaderCellDef>Qty</th>
+        <td mat-cell *matCellDef="let item">{{ item.quantity }}</td>
+      </ng-container>
+      <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef>Unit Price</th>
+        <td mat-cell *matCellDef="let item">{{ item.price | currency }}</td>
+      </ng-container>
+      <ng-container matColumnDef="lineTotal">
+        <th mat-header-cell *matHeaderCellDef>Total</th>
+        <td mat-cell *matCellDef="let item">{{ item.quantity * item.price | currency }}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+
+  <p class="order-total-row">
+    Order total: {{ data.totalAmount | currency }}
+  </p>
+</mat-dialog-content>
+<mat-dialog-actions align="end" class="dialog-actions">
+  <button mat-raised-button color="primary" mat-dialog-close>Close</button>
+</mat-dialog-actions>

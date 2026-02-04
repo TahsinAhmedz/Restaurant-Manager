@@ -1,0 +1,21 @@
+<div class="orders-card">
+  <h2 class="orders-title">Orders</h2>
+  <app-orders-filters class="orders-filters-wrap" />
+
+  <div class="orders-content">
+    @if (store.loading()) {
+      <app-loading-spinner />
+    } @else if (store.totalCount() === 0) {
+      <app-empty-state message="No orders match the current filters." />
+    } @else {
+      <app-orders-table
+        [orders]="store.filteredOrders()"
+        [totalCount]="store.totalCount()"
+        [pageSize]="store.pagination().pageSize"
+        [pageIndex]="store.pagination().pageIndex"
+        (orderSelected)="openOrderDetails($event)"
+        (pageChange)="store.setPagination($event.pageIndex, $event.pageSize)"
+      />
+    }
+  </div>
+</div>

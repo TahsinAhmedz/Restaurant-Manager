@@ -1,0 +1,62 @@
+.app-shell {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+  padding: 1rem;
+  @media (min-width: 768px) {
+    padding: 1.5rem 2rem;
+  }
+}
+
+.app-header {
+  margin-bottom: var(--app-section-gap);
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--app-border);
+
+  h1 {
+    margin: 0;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--app-text-primary);
+    letter-spacing: -0.025em;
+    line-height: 1.25;
+  }
+
+  .app-header-subtitle {
+    margin-top: 0.25rem;
+    font-size: 0.875rem;
+    color: var(--app-text-muted);
+  }
+}
+
+.app-main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--app-section-gap);
+  max-width: 1600px;
+  margin: 0 auto;
+
+  @media (min-width: 1024px) {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+
+.app-orders-section {
+  flex: 1;
+  min-width: 0;
+
+  @media (min-width: 1024px) {
+    max-width: 72%;
+  }
+}
+
+.app-analytics-aside {
+  flex-shrink: 0;
+  min-width: 0;
+
+  @media (min-width: 1024px) {
+    width: 28%;
+    position: sticky;
+    top: 1.5rem;
+  }
+}
