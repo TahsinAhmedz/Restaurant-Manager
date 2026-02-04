@@ -1,16 +1,11 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component } from '@angular/core';
+import { OrdersComponent } from './features/orders/orders/orders.component';
+import { AnalyticsComponent } from './features/analytics/analytics.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
-  template: `
-    <h1>Hello, {{ title() }}</h1>
-
-    <router-outlet />
-  `,
-  styles: [],
+  imports: [OrdersComponent, AnalyticsComponent],
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.scss',
 })
-export class App {
-  protected readonly title = signal('restaurant-manager');
-}
+export class App {}
