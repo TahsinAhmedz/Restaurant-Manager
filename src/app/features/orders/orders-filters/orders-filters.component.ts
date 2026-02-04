@@ -13,6 +13,7 @@ import {
   DEFAULT_FILTERS,
 } from '../../../core/models/order.model';
 import { debounceTime } from 'rxjs/operators';
+import { TranslateModule } from '@ngx-translate/core';
 
 const STATUS_OPTIONS: (OrderStatus | 'ALL')[] = [
   'ALL',
@@ -33,6 +34,7 @@ const PAYMENT_OPTIONS: (PaymentMethod | 'ALL')[] = ['ALL', 'CASH', 'CARD', 'ONLI
     MatSelectModule,
     MatDatepickerModule,
     MatButtonModule,
+    TranslateModule,
   ],
   templateUrl: './orders-filters.component.html',
   styleUrl: './orders-filters.component.scss',

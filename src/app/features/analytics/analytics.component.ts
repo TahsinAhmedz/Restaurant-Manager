@@ -5,11 +5,12 @@ import { CurrencyPipe } from '@angular/common';
 import { OrdersStore } from '../../core/store/orders.store';
 import { DailyRevenue } from '../../core/models/order.model';
 import { EmptyStateComponent } from '../../shared/empty-state/empty-state.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-analytics',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [MatTableModule, MatCardModule, CurrencyPipe, EmptyStateComponent],
+  imports: [MatTableModule, MatCardModule, CurrencyPipe, EmptyStateComponent, TranslateModule],
   templateUrl: './analytics.component.html',
 })
 export class AnalyticsComponent {

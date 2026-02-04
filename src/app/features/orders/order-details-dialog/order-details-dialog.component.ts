@@ -8,11 +8,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { CurrencyPipe } from '@angular/common';
 import { Order } from '../../../core/models/order.model';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-order-details-dialog',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [MatDialogModule, MatButtonModule, MatTableModule, CurrencyPipe],
+  imports: [MatDialogModule, MatButtonModule, MatTableModule, CurrencyPipe, TranslateModule],
   templateUrl: './order-details-dialog.component.html',
   styleUrl: './order-details-dialog.component.scss',
 })

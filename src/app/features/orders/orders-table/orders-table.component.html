@@ -9,7 +9,9 @@
     class="w-full min-w-[520px] text-xs md:min-w-[600px] md:text-sm"
   >
     <ng-container matColumnDef="orderId">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Order ID</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{ 'orders.table.orderId' | translate }}
+      </th>
       <td mat-cell *matCellDef="let row">
         <button
           type="button"
@@ -27,7 +29,7 @@
         mat-sort-header
         class="hidden sm:table-cell"
       >
-        Date
+        {{ 'orders.table.date' | translate }}
       </th>
       <td
         mat-cell
@@ -38,7 +40,9 @@
       </td>
     </ng-container>
     <ng-container matColumnDef="status">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{ 'orders.table.status' | translate }}
+      </th>
       <td mat-cell *matCellDef="let row">
         <span
           class="inline-block rounded-full px-2 py-1 text-[0.75rem] font-semibold uppercase tracking-wide"
@@ -61,7 +65,7 @@
         mat-sort-header
         class="hidden sm:table-cell"
       >
-        Payment
+        {{ 'orders.table.payment' | translate }}
       </th>
       <td
         mat-cell
@@ -72,7 +76,9 @@
       </td>
     </ng-container>
     <ng-container matColumnDef="totalAmount">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Total</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{ 'orders.table.total' | translate }}
+      </th>
       <td mat-cell *matCellDef="let row">{{ row.totalAmount | currency }}</td>
     </ng-container>
 
@@ -93,7 +99,7 @@
         class="mat-cell px-4 py-8 text-center text-sm text-[var(--app-text-muted)]"
         colspan="5"
       >
-        No orders match the current filters.
+        {{ 'orders.table.noData' | translate }}
       </td>
     </tr>
   </table>

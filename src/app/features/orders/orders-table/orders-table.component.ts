@@ -10,6 +10,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSortModule, Sort } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { CurrencyPipe, NgClass } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 import { Order, PaginationState } from '../../../core/models/order.model';
 
 @Component({
@@ -21,6 +22,7 @@ import { Order, PaginationState } from '../../../core/models/order.model';
     MatPaginatorModule,
     CurrencyPipe,
     NgClass,
+    TranslateModule,
   ],
   templateUrl: './orders-table.component.html',
 })

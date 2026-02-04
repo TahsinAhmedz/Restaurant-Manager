@@ -1,42 +1,52 @@
 <form [formGroup]="form" class="filters-form">
   <mat-form-field appearance="outline">
-    <mat-label>From date</mat-label>
+    <mat-label>{{ 'orders.filters.fromDate' | translate }}</mat-label>
     <input matInput formControlName="dateFrom" [matDatepicker]="fromPicker" />
     <mat-datepicker-toggle matIconSuffix [for]="fromPicker" />
     <mat-datepicker #fromPicker />
   </mat-form-field>
 
   <mat-form-field appearance="outline">
-    <mat-label>To date</mat-label>
+    <mat-label>{{ 'orders.filters.toDate' | translate }}</mat-label>
     <input matInput formControlName="dateTo" [matDatepicker]="toPicker" />
     <mat-datepicker-toggle matIconSuffix [for]="toPicker" />
     <mat-datepicker #toPicker />
   </mat-form-field>
 
   <mat-form-field appearance="outline">
-    <mat-label>Status</mat-label>
+    <mat-label>{{ 'orders.filters.status' | translate }}</mat-label>
     <mat-select formControlName="status">
       @for (opt of statusOptions; track opt) {
-        <mat-option [value]="opt">{{ opt }}</mat-option>
+        <mat-option [value]="opt">
+          {{ ('status.' + opt) | translate }}
+        </mat-option>
       }
     </mat-select>
   </mat-form-field>
 
   <mat-form-field appearance="outline">
-    <mat-label>Payment</mat-label>
+    <mat-label>{{ 'orders.filters.payment' | translate }}</mat-label>
     <mat-select formControlName="paymentMethod">
       @for (opt of paymentOptions; track opt) {
-        <mat-option [value]="opt">{{ opt }}</mat-option>
+        <mat-option [value]="opt">
+          {{ ('payment.' + opt) | translate }}
+        </mat-option>
       }
     </mat-select>
   </mat-form-field>
 
   <mat-form-field appearance="outline">
-    <mat-label>Search Order ID</mat-label>
-    <input matInput formControlName="searchOrderId" placeholder="e.g. ORD-1001" />
+    <mat-label>{{ 'orders.filters.searchOrderId' | translate }}</mat-label>
+    <input
+      matInput
+      formControlName="searchOrderId"
+      [placeholder]="'orders.filters.searchOrderIdPlaceholder' | translate"
+    />
   </mat-form-field>
 
   <div class="filters-actions">
-    <button mat-stroked-button type="button" (click)="reset()">Reset</button>
+    <button mat-stroked-button type="button" (click)="reset()">
+      {{ 'orders.filters.reset' | translate }}
+    </button>
   </div>
 </form>

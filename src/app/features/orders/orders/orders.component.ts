@@ -13,6 +13,7 @@ import { OrdersTableComponent } from '../orders-table/orders-table.component';
 import { OrderDetailsDialogComponent } from '../order-details-dialog/order-details-dialog.component';
 import { LoadingSpinnerComponent } from '../../../shared/loading-spinner/loading-spinner.component';
 import { EmptyStateComponent } from '../../../shared/empty-state/empty-state.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-orders',
@@ -23,6 +24,7 @@ import { EmptyStateComponent } from '../../../shared/empty-state/empty-state.com
     OrdersTableComponent,
     LoadingSpinnerComponent,
     EmptyStateComponent,
+    TranslateModule,
   ],
   templateUrl: './orders.component.html',
 })

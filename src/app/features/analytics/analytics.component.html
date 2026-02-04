@@ -4,17 +4,17 @@
   <h2
     class="mb-4 text-lg font-semibold tracking-tight text-[var(--app-text-primary)] md:text-[1.125rem]"
   >
-    Daily Revenue
+    {{ 'analytics.dailyRevenue' | translate }}
   </h2>
   <p
     class="-mt-2 mb-4 text-xs text-[var(--app-text-muted)] md:text-[0.8125rem]"
   >
-    Completed orders only
+    {{ 'analytics.completedOnly' | translate }}
   </p>
 
   @if (dailyRevenue().length === 0) {
     <div class="py-4">
-      <app-empty-state message="No completed orders for selected filters" />
+      <app-empty-state [message]="'analytics.noCompletedOrders'" />
     </div>
   } @else {
     <div
@@ -22,15 +22,21 @@
     >
       <table mat-table [dataSource]="dailyRevenue()" class="w-full">
         <ng-container matColumnDef="date">
-          <th mat-header-cell *matHeaderCellDef>Date</th>
+          <th mat-header-cell *matHeaderCellDef>
+            {{ 'analytics.table.date' | translate }}
+          </th>
           <td mat-cell *matCellDef="let row">{{ row.date }}</td>
         </ng-container>
         <ng-container matColumnDef="orderCount">
-          <th mat-header-cell *matHeaderCellDef>Orders</th>
+          <th mat-header-cell *matHeaderCellDef>
+            {{ 'analytics.table.orders' | translate }}
+          </th>
           <td mat-cell *matCellDef="let row">{{ row.orderCount }}</td>
         </ng-container>
         <ng-container matColumnDef="totalRevenue">
-          <th mat-header-cell *matHeaderCellDef>Revenue</th>
+          <th mat-header-cell *matHeaderCellDef>
+            {{ 'analytics.table.revenue' | translate }}
+          </th>
           <td
             mat-cell
             *matCellDef="let row"

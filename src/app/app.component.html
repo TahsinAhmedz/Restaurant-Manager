@@ -2,16 +2,37 @@
   class="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100 p-3 sm:px-6 sm:py-4 md:px-8 md:py-6"
 >
   <header
-    class="mb-[var(--app-section-gap)] border-b border-[var(--app-border)] pb-4"
+    class="mb-[var(--app-section-gap)] border-b border-[var(--app-border)] pb-4 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between"
   >
-    <h1
-      class="m-0 text-2xl font-bold leading-tight tracking-tight text-[var(--app-text-primary)]"
-    >
-      Restaurant Dashboard
-    </h1>
-    <p class="mt-1 text-sm text-[var(--app-text-muted)]">
-      Monitor orders and daily revenue
-    </p>
+    <div>
+      <h1
+        class="m-0 text-2xl font-bold leading-tight tracking-tight text-[var(--app-text-primary)]"
+      >
+        {{ 'app.title' | translate }}
+      </h1>
+      <p class="mt-1 text-sm text-[var(--app-text-muted)]">
+        {{ 'app.subtitle' | translate }}
+      </p>
+    </div>
+    <div class="flex items-center justify-end gap-2 text-xs sm:text-sm sm:pt-1">
+      <mat-form-field
+        appearance="outline"
+        class="w-32 text-right"
+      >
+        <mat-label>{{ 'app.language.label' | translate }}</mat-label>
+        <mat-select
+          [value]="currentLang"
+          (selectionChange)="handleLanguageSelectionChange($event.value)"
+          aria-label="Language selection"
+        >
+          @for (lang of supportedLanguages; track lang.value) {
+            <mat-option [value]="lang.value">
+              {{ lang.labelKey | translate }}
+            </mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
   </header>
 
   <div

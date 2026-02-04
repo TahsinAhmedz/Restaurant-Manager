@@ -4,7 +4,7 @@
   <h2
     class="mb-4 text-xl font-semibold tracking-tight text-[var(--app-text-primary)]"
   >
-    Orders
+    {{ 'orders.title' | translate }}
   </h2>
   <app-orders-filters class="mb-5 block" />
 
@@ -12,7 +12,7 @@
     @if (store.loading()) {
       <app-loading-spinner />
     } @else if (store.totalCount() === 0) {
-      <app-empty-state message="No orders match the current filters." />
+      <app-empty-state [message]="'orders.empty'" />
     } @else {
       <app-orders-table
         [orders]="store.filteredOrders()"
