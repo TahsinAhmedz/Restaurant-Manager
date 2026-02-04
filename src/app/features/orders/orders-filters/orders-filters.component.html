@@ -16,6 +16,9 @@
   <mat-form-field appearance="outline">
     <mat-label>{{ 'orders.filters.status' | translate }}</mat-label>
     <mat-select formControlName="status">
+      <mat-select-trigger>
+        {{ ('status.' + form.controls.status.value) | translate }}
+      </mat-select-trigger>
       @for (opt of statusOptions; track opt) {
         <mat-option [value]="opt">
           {{ ('status.' + opt) | translate }}
@@ -27,6 +30,9 @@
   <mat-form-field appearance="outline">
     <mat-label>{{ 'orders.filters.payment' | translate }}</mat-label>
     <mat-select formControlName="paymentMethod">
+      <mat-select-trigger>
+        {{ ('payment.' + form.controls.paymentMethod.value) | translate }}
+      </mat-select-trigger>
       @for (opt of paymentOptions; track opt) {
         <mat-option [value]="opt">
           {{ ('payment.' + opt) | translate }}

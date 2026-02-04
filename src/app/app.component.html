@@ -25,6 +25,9 @@
           (selectionChange)="handleLanguageSelectionChange($event.value)"
           aria-label="Language selection"
         >
+          <mat-select-trigger>
+            {{ getCurrentLanguageLabelKey() | translate }}
+          </mat-select-trigger>
           @for (lang of supportedLanguages; track lang.value) {
             <mat-option [value]="lang.value">
               {{ lang.labelKey | translate }}

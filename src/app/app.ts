@@ -39,4 +39,9 @@ export class App {
   handleLanguageSelectionChange(lang: 'en' | 'bn'): void {
     this.setLanguage(lang);
   }
+
+  getCurrentLanguageLabelKey(): string {
+    const found = this.supportedLanguages.find((l) => l.value === this.currentLang);
+    return found?.labelKey ?? 'app.language.en';
+  }
 }
