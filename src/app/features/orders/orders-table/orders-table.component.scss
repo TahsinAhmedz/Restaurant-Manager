@@ -99,3 +99,39 @@
 .paginator-wrap .mat-mdc-paginator {
   background: transparent;
 }
+
+// Responsive tweaks
+@media (max-width: 768px) {
+  .table-wrap {
+    max-height: none;
+    border-radius: var(--app-radius-sm);
+  }
+
+  .table-wrap table {
+    min-width: 520px;
+  }
+
+  .table-wrap .mat-mdc-header-row,
+  .table-wrap .mat-mdc-row {
+    font-size: 0.8125rem;
+  }
+
+  .paginator-wrap {
+    padding-inline: 0.25rem;
+  }
+}
+
+// On very small screens, hide less critical columns (Payment, Date) to avoid overflow.
+// Column order: Order ID, Date, Status, Payment, Total
+@media (max-width: 640px) {
+  .table-wrap table {
+    min-width: 0;
+  }
+
+  .table-wrap .mat-mdc-header-row .mat-mdc-header-cell:nth-child(2),
+  .table-wrap .mat-mdc-row .mat-mdc-cell:nth-child(2),
+  .table-wrap .mat-mdc-header-row .mat-mdc-header-cell:nth-child(4),
+  .table-wrap .mat-mdc-row .mat-mdc-cell:nth-child(4) {
+    display: none;
+  }
+}

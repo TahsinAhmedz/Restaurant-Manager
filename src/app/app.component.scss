@@ -1,7 +1,12 @@
 .app-shell {
   min-height: 100vh;
   background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
-  padding: 1rem;
+  padding: 0.75rem;
+
+  @media (min-width: 640px) {
+    padding: 1rem 1.5rem;
+  }
+
   @media (min-width: 768px) {
     padding: 1.5rem 2rem;
   }
@@ -34,6 +39,10 @@
   gap: var(--app-section-gap);
   max-width: 1600px;
   margin: 0 auto;
+
+  @media (max-width: 1023.98px) {
+    padding-bottom: 1.5rem;
+  }
 
   @media (min-width: 1024px) {
     flex-direction: row;

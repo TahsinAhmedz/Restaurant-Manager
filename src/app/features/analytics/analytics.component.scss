@@ -49,3 +49,21 @@
 .empty-wrap {
   padding: 1rem 0;
 }
+
+@media (max-width: 768px) {
+  .analytics-card {
+    padding: 1.25rem 1rem;
+  }
+
+  .analytics-table-wrap {
+    max-height: 320px;
+  }
+
+  .analytics-title {
+    font-size: 1rem;
+  }
+
+  .analytics-subtitle {
+    font-size: 0.75rem;
+  }
+}
