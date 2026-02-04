@@ -25,7 +25,6 @@ import { EmptyStateComponent } from '../../../shared/empty-state/empty-state.com
     EmptyStateComponent,
   ],
   templateUrl: './orders.component.html',
-  styleUrl: './orders.component.scss',
 })
 export class OrdersComponent implements OnInit {
   readonly store = inject(OrdersStore);

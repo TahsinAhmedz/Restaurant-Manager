@@ -11,7 +11,6 @@ import { EmptyStateComponent } from '../../shared/empty-state/empty-state.compon
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [MatTableModule, MatCardModule, CurrencyPipe, EmptyStateComponent],
   templateUrl: './analytics.component.html',
-  styleUrl: './analytics.component.scss',
 })
 export class AnalyticsComponent {
   private readonly store = inject(OrdersStore);

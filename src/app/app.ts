@@ -6,6 +6,5 @@ import { AnalyticsComponent } from './features/analytics/analytics.component';
   selector: 'app-root',
   imports: [OrdersComponent, AnalyticsComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
 })
 export class App {}

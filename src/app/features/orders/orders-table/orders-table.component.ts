@@ -9,7 +9,7 @@ import {
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule, Sort } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { CurrencyPipe } from '@angular/common';
+import { CurrencyPipe, NgClass } from '@angular/common';
 import { Order, PaginationState } from '../../../core/models/order.model';
 
 @Component({
@@ -20,9 +20,9 @@ import { Order, PaginationState } from '../../../core/models/order.model';
     MatSortModule,
     MatPaginatorModule,
     CurrencyPipe,
+    NgClass,
   ],
   templateUrl: './orders-table.component.html',
-  styleUrl: './orders-table.component.scss',
 })
 export class OrdersTableComponent {
   readonly orders = input.required<Order[]>();

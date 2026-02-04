@@ -1,14 +1,28 @@
-<main class="app-shell">
-  <header class="app-header">
-    <h1>Restaurant Dashboard</h1>
-    <p class="app-header-subtitle">Monitor orders and daily revenue</p>
+<main
+  class="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100 p-3 sm:px-6 sm:py-4 md:px-8 md:py-6"
+>
+  <header
+    class="mb-[var(--app-section-gap)] border-b border-[var(--app-border)] pb-4"
+  >
+    <h1
+      class="m-0 text-2xl font-bold leading-tight tracking-tight text-[var(--app-text-primary)]"
+    >
+      Restaurant Dashboard
+    </h1>
+    <p class="mt-1 text-sm text-[var(--app-text-muted)]">
+      Monitor orders and daily revenue
+    </p>
   </header>
 
-  <div class="app-main">
-    <section class="app-orders-section">
+  <div
+    class="mx-auto flex max-w-[1600px] flex-col gap-[var(--app-section-gap)] pb-6 lg:flex-row lg:items-start lg:pb-0"
+  >
+    <section class="min-w-0 flex-1 lg:max-w-[72%]">
       <app-orders />
     </section>
-    <aside class="app-analytics-aside">
+    <aside
+      class="min-w-0 flex-shrink-0 lg:sticky lg:top-6 lg:w-[28%]"
+    >
       <app-analytics />
     </aside>
   </div>
