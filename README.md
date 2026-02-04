@@ -2,6 +2,8 @@
 
 Angular app for managing restaurant orders.
 
+**[View the project live](https://tahsinahmedz.github.io/Restaurant-Manager/)**
+
 ## Run the project
 
 1. Install dependencies:
