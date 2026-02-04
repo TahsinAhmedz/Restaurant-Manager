@@ -1,0 +1,83 @@
+{
+  "app": {
+    "title": "Restaurant Dashboard",
+    "subtitle": "Monitor orders and daily revenue",
+    "language": {
+      "label": "Language",
+      "en": "English",
+      "bn": "Bengali"
+    }
+  },
+  "orders": {
+    "title": "Orders",
+    "empty": "No orders match the current filters.",
+    "loadError": "Unable to load orders. Please try again.",
+    "retry": "Retry",
+    "noFiltered": "No orders match the current filters.",
+    "table": {
+      "viewOrderDetails": "View order {{orderId}} details",
+      "orderId": "Order ID",
+      "date": "Date",
+      "status": "Status",
+      "payment": "Payment",
+      "total": "Total",
+      "noData": "No orders match the current filters."
+    },
+    "filters": {
+      "fromDate": "From date",
+      "toDate": "To date",
+      "status": "Status",
+      "payment": "Payment",
+      "searchOrderId": "Search Order ID",
+      "searchOrderIdPlaceholder": "e.g. ORD-1001",
+      "reset": "Reset"
+    },
+    "details": {
+      "title": "Order {{orderId}}",
+      "date": "Date",
+      "customer": "Customer",
+      "status": "Status",
+      "payment": "Payment",
+      "items": {
+        "item": "Item",
+        "quantity": "Qty",
+        "unitPrice": "Unit Price",
+        "total": "Total"
+      },
+      "orderTotal": "Order total",
+      "close": "Close"
+    }
+  },
+  "analytics": {
+    "dailyRevenue": "Daily Revenue",
+    "completedOnly": "Completed orders only",
+    "noCompletedOrders": "No completed orders for selected filters",
+    "table": {
+      "date": "Date",
+      "orders": "Orders",
+      "revenue": "Revenue"
+    }
+  },
+  "shared": {
+    "empty": {
+      "noData": "No data"
+    },
+    "loading": {
+      "orders": "Loading orders"
+    }
+  },
+  "status": {
+    "ALL": "All statuses",
+    "COMPLETED": "Completed",
+    "PENDING": "Pending",
+    "CANCELLED": "Cancelled",
+    "REFUNDED": "Refunded"
+  },
+  "payment": {
+    "ALL": "All payments",
+    "CASH": "Cash",
+    "CARD": "Card",
+    "ONLINE": "Online"
+  }
+}
+
