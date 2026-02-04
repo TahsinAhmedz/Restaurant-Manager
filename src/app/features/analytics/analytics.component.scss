@@ -22,7 +22,8 @@
 }
 
 .analytics-table-wrap {
-  overflow-x: auto;
+  max-height: 467px;
+  overflow: auto;
   border: 1px solid var(--app-border);
   border-radius: var(--app-radius-sm);
   background: var(--app-surface-elevated);

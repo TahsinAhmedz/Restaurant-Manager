@@ -1,5 +1,7 @@
 .table-wrap {
-  overflow-x: auto;
+  position: relative;
+  max-height: 400px;
+  overflow: auto;
   border-radius: var(--app-radius-sm);
   border: 1px solid var(--app-border);
   background: var(--app-surface-elevated);
@@ -87,8 +89,11 @@
 }
 
 .paginator-wrap {
+  position: sticky;
+  bottom: 0;
   border-top: 1px solid var(--app-border);
   background: #fafafa;
+  z-index: 2;
 }
 
 .paginator-wrap .mat-mdc-paginator {
